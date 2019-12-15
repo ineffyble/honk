@@ -1,0 +1,10 @@
+[package]
+name = "honk"
+version = "0.1.0"
+authors = ["Effy Elden"]
+edition = "2018"
+
+[dependencies]
+rand = "0.7.2"
+rodio = "0.10.0"
+rust-embed = "5.2.0"
