@@ -6,6 +6,7 @@ env:
   global:
   - CRATE_NAME=honk
   - secure: taWpSTM1ESygXTj7xQSvh7QGWEzbSPk/PTiBb1g4eYC4A1gEGiTPm61XRgyd3pU3ejtMeLHzW3FgDzjg7qQITO+CrmdryO/WTjmF/UyCjkJHHK4fKbQyszw2tpdzSQXCtZo8aF8vCgqLAopjkRzyF+oZ4SWyh5f3sscey7C7UMCkLQByWdEUcCFGWoI4UmilEvuvKEGP6Hb9Htrp2+22uAFJ0HkKR7o/JmN1ik/wjhMdCnmZ19QzkBwgsgjzL3eEbzq9dooS80o+zI1Al1j3hFczyeeV2TAvKwq/kI2xKyhoqVUYT9TDkc1MHPdbhn4osqzQR/EXPoY+cvP0IYy4c86Su9c7ZrFLw+m0iqqaR7LrxA2sW7z30ldMIRq7DMGAfOs7rEDocA1wJ5p9+N7qUwuVudB2Y2vNAROZxP75UnA6DwLs+ohYiSukJMAcj2VqamUB5iP9AbCfYKz9jME2LvE0X/klarT1rIb4DjzouPbycebawW2hDwlD1Mo/pcwDJjKBwVgrfpdSa3KAOxg+wS4qGMj1T0borHKCAHq9x/05uUCj6Qk1B7Um/oSZrjNveLUDsn027OJQ5zTSn08OCPkROSLCKwWwnxdIIN64dlIgdW3c4ujnaAd8U/gHpVRO7j0SeZCy+cgNe/FEnCYPWhw1X6aE+Bsz8MkRZzUl0+4=
+  - PKG_CONFIG_ALLOW_CROSS=1
 matrix:
   include:
   - env: TARGET=aarch64-linux-android DISABLE_TESTS=1
