@@ -1,0 +1,84 @@
+dist: trusty
+language: rust
+services: docker
+sudo: required
+env:
+  global:
+  - CRATE_NAME=honk
+  - secure: taWpSTM1ESygXTj7xQSvh7QGWEzbSPk/PTiBb1g4eYC4A1gEGiTPm61XRgyd3pU3ejtMeLHzW3FgDzjg7qQITO+CrmdryO/WTjmF/UyCjkJHHK4fKbQyszw2tpdzSQXCtZo8aF8vCgqLAopjkRzyF+oZ4SWyh5f3sscey7C7UMCkLQByWdEUcCFGWoI4UmilEvuvKEGP6Hb9Htrp2+22uAFJ0HkKR7o/JmN1ik/wjhMdCnmZ19QzkBwgsgjzL3eEbzq9dooS80o+zI1Al1j3hFczyeeV2TAvKwq/kI2xKyhoqVUYT9TDkc1MHPdbhn4osqzQR/EXPoY+cvP0IYy4c86Su9c7ZrFLw+m0iqqaR7LrxA2sW7z30ldMIRq7DMGAfOs7rEDocA1wJ5p9+N7qUwuVudB2Y2vNAROZxP75UnA6DwLs+ohYiSukJMAcj2VqamUB5iP9AbCfYKz9jME2LvE0X/klarT1rIb4DjzouPbycebawW2hDwlD1Mo/pcwDJjKBwVgrfpdSa3KAOxg+wS4qGMj1T0borHKCAHq9x/05uUCj6Qk1B7Um/oSZrjNveLUDsn027OJQ5zTSn08OCPkROSLCKwWwnxdIIN64dlIgdW3c4ujnaAd8U/gHpVRO7j0SeZCy+cgNe/FEnCYPWhw1X6aE+Bsz8MkRZzUl0+4=
+matrix:
+  include:
+  - env: TARGET=aarch64-linux-android DISABLE_TESTS=1
+  - env: TARGET=arm-linux-androideabi DISABLE_TESTS=1
+  - env: TARGET=armv7-linux-androideabi DISABLE_TESTS=1
+  - env: TARGET=i686-linux-android DISABLE_TESTS=1
+  - env: TARGET=x86_64-linux-android DISABLE_TESTS=1
+  - env: TARGET=aarch64-apple-ios DISABLE_TESTS=1
+    os: osx
+  - env: TARGET=armv7-apple-ios DISABLE_TESTS=1
+    os: osx
+  - env: TARGET=armv7s-apple-ios DISABLE_TESTS=1
+    os: osx
+  - env: TARGET=i386-apple-ios DISABLE_TESTS=1
+    os: osx
+  - env: TARGET=x86_64-apple-ios DISABLE_TESTS=1
+    os: osx
+  - env: TARGET=aarch64-unknown-linux-gnu
+  - env: TARGET=arm-unknown-linux-gnueabi
+  - env: TARGET=armv7-unknown-linux-gnueabihf
+  - env: TARGET=i686-unknown-linux-gnu
+  - env: TARGET=i686-unknown-linux-musl
+  - env: TARGET=mips-unknown-linux-gnu
+  - env: TARGET=mips64-unknown-linux-gnuabi64
+  - env: TARGET=mips64el-unknown-linux-gnuabi64
+  - env: TARGET=mipsel-unknown-linux-gnu
+  - env: TARGET=powerpc-unknown-linux-gnu
+  - env: TARGET=powerpc64-unknown-linux-gnu
+  - env: TARGET=powerpc64le-unknown-linux-gnu
+  - env: TARGET=s390x-unknown-linux-gnu DISABLE_TESTS=1
+  - env: TARGET=x86_64-unknown-linux-gnu
+  - env: TARGET=x86_64-unknown-linux-musl
+  - env: TARGET=i686-apple-darwin
+    os: osx
+  - env: TARGET=x86_64-apple-darwin
+    os: osx
+  - env: TARGET=i686-unknown-freebsd DISABLE_TESTS=1
+  - env: TARGET=x86_64-unknown-freebsd DISABLE_TESTS=1
+  - env: TARGET=x86_64-unknown-netbsd DISABLE_TESTS=1
+  - env: TARGET=x86_64-pc-windows-gnu
+  - env: TARGET=x86_64-unknown-linux-gnu
+    rust: nightly
+  - env: TARGET=x86_64-apple-darwin
+    os: osx
+    rust: nightly
+before_install:
+- set -e
+- rustup self update
+install:
+- sh ci/install.sh
+- source ~/.cargo/env || true
+script:
+- bash ci/script.sh
+after_script: set +e
+before_deploy:
+- sh ci/before_deploy.sh
+deploy:
+  api_key:
+    secure: "m+KXWnPht93EGiTSagvXucqTMY+4Rl+gPAtWV0rWmDQTiEduQCDBJ9FW5truGEU8232qJT1JItSzdkui6euakgcGRGLGfTaVTqH9wqT1G3Q/MvurGyd+XJmveprZTyPJhjkRzMHi5LdgbJyFWkGgkrZXlf0D0ka27P0us72KoMm22Nowb8WIvk8ES4gki2fVVA/1prYhI2tAGIPyNAT3T6jYbcQZgEqQbtE/5dz8ddO9tEuyR660cvgnmYVsvzabc2o9S9yjzYbjam4msdQBNXa0U3P2xVVY33kP3Mzfh5X2z940fgW6lK3rovy1H9t70rWR86xOUjo22FAa196MaGubxLT+/ioOPauhPmTJrrZb82rb2vpBzX/+cQJ2DulaRhMwNLvhn7wdFJ6UxNLfADiuApcJSnUesCVSZt7MZrJUmbjjQNR6MK8SF5kO7ZeaS4lhAWYhYPChFColI3Rq8aCwiNjYn8sWf7Eh/7GHlNk5gYhpYFjC2+i+gWYXFHTqTj7OK0Efg0V4qevR9xxxgXGSTZY0J/vu9BFb/BcqVyxnglF6U+eVuH+BdfgdAXtMREzuE+ODNHcQ2mRUKuXKPJKbOkDlHfPbOxa5F7miBgFMFWzH0sRtjFSgkiFGBzW0XfnrXGYYm1KOTIvFltAGWeQQ4eQZh4kahC0CsZ+h6t0="
+  file_glob: true
+  file: "$CRATE_NAME-$TRAVIS_TAG-$TARGET.*"
+  on:
+    condition: "$TRAVIS_RUST_VERSION = stable"
+    tags: true
+  provider: releases
+  skip_cleanup: true
+cache: cargo
+before_cache:
+- chmod -R a+r $HOME/.cargo
+branches:
+  only:
+  - "/^v\\d+\\.\\d+\\.\\d+.*$/"
+  - master
+notifications:
+  email:
+    on_success: never
