@@ -30,7 +30,7 @@ main() {
             ;;
     esac
 
-    docker build -t $TARGET:v0.1.16 ci/
+    docker build -t $TARGET:v0.1.16 --build-arg TARGET=$TARGET ci/
 
     # This fetches latest stable release
     local tag=$(git ls-remote --tags --refs --exit-code https://github.com/japaric/cross \
