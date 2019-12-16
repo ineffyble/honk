@@ -54,6 +54,7 @@ matrix:
     rust: nightly
 before_install:
 - set -e
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y libasound2-dev ; fi
 - rustup self update
 install:
 - sh ci/install.sh
