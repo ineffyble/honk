@@ -5,6 +5,7 @@ main() {
     if [ $TRAVIS_OS_NAME = linux ]; then
         target=x86_64-unknown-linux-musl
         sort=sort
+        docker build -t rustembedded/cross:${TARGET}-0.1.16 --build-arg TARGET=$TARGET ci/
     else
         target=x86_64-apple-darwin
         sort=gsort  # for `sort --sort-version`, from brew's coreutils.
@@ -29,8 +30,6 @@ main() {
             rustup target install x86_64-apple-ios
             ;;
     esac
-
-    docker build -t rustembedded/cross:${TARGET}-0.1.16 --build-arg TARGET=$TARGET ci/
 
     # This fetches latest stable release
     local tag=$(git ls-remote --tags --refs --exit-code https://github.com/japaric/cross \
