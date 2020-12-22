@@ -49,7 +49,7 @@ test_script:
 
 before_deploy:
   # TODO Update this to build the artifacts that matter to you
-  - cargo rustc --target %TARGET% --release --bin %CRATE_NAME% -- -C lto
+  - cargo rustc --target %TARGET% --release --bin %CRATE_NAME%
   - cargo install cargo-wix
   - cargo wix
   - ps: ci\before_deploy.ps1
