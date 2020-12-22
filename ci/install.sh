@@ -15,8 +15,9 @@ main() {
                        | grep -E '^v[0.1.0-9.]+$' \
                        | $sort --version-sort \
                        | tail -n1)
+    local version=${tag/v/}
     if [ $TRAVIS_OS_NAME = linux ]; then
-        docker build -t rustembedded/cross:${TARGET}-${tag} --build-arg TARGET=$TARGET --build-arg VERSION=$tag ci/
+        docker build -t rustembedded/cross:${TARGET}-${version} --build-arg TARGET=$TARGET --build-arg VERSION=$version ci/
     fi
     # Builds for iOS are done on OSX, but require the specific target to be
     # installed.
