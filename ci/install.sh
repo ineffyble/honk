@@ -2,6 +2,13 @@ set -ex
 
 main() {
     local target=
+    if [ $TRAVIS_OS_NAME = linux ]; then
+        target=x86_64-unknown-linux-musl
+        sort=sort
+    else
+        target=x86_64-apple-darwin
+        sort=gsort  # for `sort --sort-version`, from brew's coreutils.
+    fi
     # This fetches latest stable release
     local tag=$(git ls-remote --tags --refs --exit-code https://github.com/japaric/cross \
                        | cut -d/ -f3 \
@@ -9,14 +16,8 @@ main() {
                        | $sort --version-sort \
                        | tail -n1)
     if [ $TRAVIS_OS_NAME = linux ]; then
-        target=x86_64-unknown-linux-musl
-        sort=sort
         docker build -t rustembedded/cross:${TARGET}-${TAG} --build-arg TARGET=$TARGET --build-arg VERSION=$TAG ci/
-    else
-        target=x86_64-apple-darwin
-        sort=gsort  # for `sort --sort-version`, from brew's coreutils.
     fi
-
     # Builds for iOS are done on OSX, but require the specific target to be
     # installed.
     case $TARGET in
