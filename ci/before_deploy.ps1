@@ -11,14 +11,15 @@ New-Item -Type Directory -Name $STAGE
 Set-Location $STAGE
 
 $ZIP = "$SRC_DIR\$($env:CRATE_NAME)-$($env:APPVEYOR_REPO_TAG_NAME)-$($env:TARGET).zip"
+$MSI = "$SRC_DIR\$($env:CRATE_NAME)-$($VERSION)-x86_64.msi"
 
 # TODO Update this to package the right artifacts
 Copy-Item "$SRC_DIR\target\$($env:TARGET)\release\$($env:CRATE_NAME).exe" '.\'
 7z a "$ZIP" *
 Push-AppveyorArtifact "$ZIP"
 
-Copy-Item "$SRC_DIR\target\wix\$($env:CRATE_NAME)-$($VERSION)-x86_64.msi" '.\'
-Push-AppveyorArtifact "$($env:CRATE_NAME)-$($VERSION)-x86_64.msi"
+Copy-Item "$SRC_DIR\target\wix\$($env:CRATE_NAME)-$($VERSION)-x86_64.msi" "$MSI"
+Push-AppveyorArtifact "MSI"
 
 Remove-Item *.* -Force
 Set-Location ..
