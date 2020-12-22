@@ -55,13 +55,15 @@ before_deploy:
   - ps: ci\before_deploy.ps1
 
 deploy:
-  artifact: /.*\.zip/
+  artifact:
+    - path: /.*\.zip/
+    - path: /.*\.msi/
   # TODO update `auth_token.secure`
   # - Create a `public_repo` GitHub token. Go to: https://github.com/settings/tokens/new
   # - Encrypt it. Go to https://ci.appveyor.com/tools/encrypt
   # - Paste the output down here
   auth_token:
-    secure: FCEftMTL68Ieccao8xWnlgbwv/4/Iz6+agrzSFRSqkeYIwAIM++SdgDJ+Y6ebKK7
+    secure: gZEOKNYHljyCzTsjMC0SMqgSi6ehZLMfQP9u83gJJAyCyRIdMIzr+3ZHIR9N2tYs
   description: ''
   on:
     # TODO Here you can pick which targets will generate binary releases
