@@ -17,7 +17,7 @@ Copy-Item "$SRC_DIR\target\$($env:TARGET)\release\$($env:CRATE_NAME).exe" '.\'
 7z a "$ZIP" *
 Push-AppveyorArtifact "$ZIP"
 
-Copy-Item "$SRC_DIR\target\release\wix\$($env:CRATE_NAME)-$($VERSION)-x86_64.msi" '.\'
+Copy-Item "$SRC_DIR\target\wix\$($env:CRATE_NAME)-$($VERSION)-x86_64.msi" '.\'
 Push-AppveyorArtifact "$($env:CRATE_NAME)-$($VERSION)-x86_64.msi"
 
 Remove-Item *.* -Force
