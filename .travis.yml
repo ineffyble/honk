@@ -57,7 +57,7 @@ before_install:
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y libasound2-dev ; fi
 - rustup self update
 install:
-- sh ci/install.sh
+- bash ci/install.sh
 - source ~/.cargo/env || true
 script:
 - bash ci/script.sh
