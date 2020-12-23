@@ -16,8 +16,8 @@ pub fn honk() {
 
 fn play_sound(sound_name: String) {
     let honk = Honk::get(&sound_name).unwrap();
-    let device = rodio::default_output_device().unwrap();
+    let (_stream, stream_handle) = rodio::OutputStream::try_default().unwrap();
 
-    let sink = rodio::play_once(&device, Cursor::new(honk));
+    let sink = rodio::OutputStreamHandle::play_once(&stream_handle, Cursor::new(honk));
     sink.unwrap().sleep_until_end();
 }
