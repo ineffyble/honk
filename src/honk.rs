@@ -9,7 +9,7 @@ struct Honk;
 
 pub fn honk() {
     let mut rng = rand::thread_rng();
-    let honk_number = rng.gen_range(0, 3) + 1;
+    let honk_number = rng.gen_range(0..3) + 1;
     let honk_file = format!("{}.mp3", honk_number.to_string());
     play_sound(honk_file);
 }
