@@ -424,7 +424,7 @@ checksum = "9b919933a397b79c37e33b77bb2aa3dc8eb6e165ad809e58ff75bc7db2e34574"
 
 [[package]]
 name = "honk"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "rand",
  "rodio",
@@ -979,9 +979,9 @@ dependencies = [
 
 [[package]]
 name = "rust-embed"
-version = "5.7.0"
+version = "5.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2a9619e0b88f073e59df757c75841f05568e92057e992971288d4cef5e12a178"
+checksum = "abcb6e9589c2b7875dc4cdfecc6289ea75700a52976b52ef4443d7aad46f7397"
 dependencies = [
  "rust-embed-impl",
  "rust-embed-utils",
@@ -990,10 +990,11 @@ dependencies = [
 
 [[package]]
 name = "rust-embed-impl"
-version = "5.7.0"
+version = "5.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6168c9daefd8dd3a1cf0e06a5f92a42537dc207f09cc6526e731dcfda979470e"
+checksum = "ebc6a6c2785d73d8f0157d10a40223bbf0210f18aecb261d39b96802f9ccc69d"
 dependencies = [
+ "proc-macro2",
  "quote",
  "rust-embed-utils",
  "syn",
