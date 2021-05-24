@@ -6,5 +6,5 @@ edition = "2018"
 
 [dependencies]
 rand = "0.8.2"
-rodio = "0.13.0"
+rodio = "0.14.0"
 rust-embed = "5.8.0"
