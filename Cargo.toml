@@ -7,4 +7,4 @@ edition = "2018"
 [dependencies]
 rand = "0.8.4"
 rodio = "0.13.0"
-rust-embed = "5.8.0"
+rust-embed = "6.2.0"
