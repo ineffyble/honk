@@ -5,6 +5,6 @@ authors = ["Effy Elden"]
 edition = "2018"
 
 [dependencies]
-rand = "0.8.4"
+rand = "0.8.5"
 rodio = "0.15.0"
 rust-embed = "5.8.0"
